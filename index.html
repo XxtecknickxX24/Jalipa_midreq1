@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Command Line Calculator</title>
+  <title>Command Line Calculator with Python</title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,7 +28,7 @@
       text-align: center;
       color: #ff5ba9;
       font-family: 'Brush Script MT', cursive;
-      font-size: 50px;	
+      font-size: 50px;    
     }
     .output {
       font-size: 1.2em;
@@ -67,20 +69,20 @@
   <div class="calculator">
     <h2>Command Line Calculator</h2>
     <input type="text" id="expression" placeholder="Enter expression (e.g., 5 + 3 * 2)">
-    <button onclick="calculate()">Calculate</button>
+    <button py-click="calculate()">Calculate</button>
     <div class="output" id="result"></div>
   </div>
 
-  <script>
-    function calculate() {
-      const expression = document.getElementById("expression").value;
-      try {
-        const result = eval(expression);
-        document.getElementById("result").textContent = "Result: " + result;
-      } catch (error) {
-        document.getElementById("result").textContent = "Error: Invalid expression";
-      }
-    }
-  </script>
+  <py-script>
+    from js import document
+
+    def calculate():
+        expression = document.getElementById("expression").value
+        try:
+            result = eval(expression)
+            document.getElementById("result").textContent = f"Result: {result}"
+        except Exception as e:
+            document.getElementById("result").textContent = "Error: Invalid expression"
+  </py-script>
 </body>
 </html>
